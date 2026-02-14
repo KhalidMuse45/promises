@@ -30,7 +30,6 @@ def refine_promise(promise, issue, category):
             model = "gemini-2.5-flash",
             contents = prompt
         )
-
         return response.text
     
     except Exception as e:
