@@ -1,10 +1,12 @@
 /* Live feed terminal */
 
 .terminal {
-  background: var(--ink);
+  background: #232335;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 6px 24px rgba(26, 26, 46, 0.10);
+  box-shadow: 0 4px 16px rgba(26, 26, 46, 0.08);
+  width: 600px;
+  max-width: 100%;
 }
 
 .terminal-bar {

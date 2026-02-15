@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Promises</title>
+<link rel="icon" href="/static/favicon.png" sizes="256x256" />
+<link rel="apple-touch-icon" href="/static/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/base.css">
+<link rel="stylesheet" href="/static/css/nav.css">
+<link rel="stylesheet" href="/static/css/star.css">
+</head>
+<body>
+
+<nav id="nav">
+  <a class="wordmark" href="/">Promise<span class="dot">.</span></a>
+  <div class="nav-r">
+    <a href="/make" class="btn">Make a Promise</a>
+    <a href="/promises" class="btn-ghost">View Promises</a>
+  </div>
+</nav>
+
+<div id="starOverlay" class="star-animation-overlay">
+  <div class="star-burst">
+    <div class="star star-center">★</div>
+    <div class="star star-1">★</div>
+    <div class="star star-2">★</div>
+    <div class="star star-3">★</div>
+    <div class="star star-4">★</div>
+    <div class="star star-5">★</div>
+    <div class="star star-6">★</div>
+    <div class="sparkle sparkle-1"></div>
+    <div class="sparkle sparkle-2"></div>
+    <div class="sparkle sparkle-3"></div>
+    <div class="sparkle sparkle-4"></div>
+    <div class="sparkle sparkle-5"></div>
+    <div class="sparkle sparkle-6"></div>
+    <div class="sparkle sparkle-7"></div>
+    <div class="sparkle sparkle-8"></div>
+  </div>
+</div>
+
+<main class="page">
+  <section class="section">
+    <div class="panel">
+      <h2>Current Promises</h2>
+      {% if promises|length == 0 %}
+        <p>No active promises.</p>
+      {% else %}
+        <ul class="list">
+          {% for p in promises %}
+            <li>
+              <div class="row">
+                <div>
+                  <div class="title">{{ p.name }} ({{ p.promise_type }})</div>
+                  <div class="muted">{{ p.content }}</div>
+                  <div class="muted">Time left: {{ p.time_left }}</div>
+                </div>
+                <form action="/promises/{{ p.id }}/complete" method="post" class="complete-form">
+                  <button class="btn" type="submit">Complete</button>
+                </form>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </section>
+</main>
+
+<script>
+const forms=document.querySelectorAll('.complete-form');
+const overlay=document.getElementById('starOverlay');
+function runStars(target){
+  if(!overlay){return;}
+  const rect=target.getBoundingClientRect();
+  overlay.style.left=rect.left+rect.width/2+'px';
+  overlay.style.top=rect.top+rect.height/2+'px';
+  overlay.classList.remove('active');
+  void overlay.offsetWidth;
+  overlay.classList.add('active');
+}
+forms.forEach((form)=>{
+  form.addEventListener('submit',(event)=>{
+    event.preventDefault();
+    const button=form.querySelector('button');
+    if(button){runStars(button);}
+    setTimeout(()=>{form.submit();},850);
+  });
+});
+</script>
+</body>
+</html>

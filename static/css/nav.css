@@ -8,7 +8,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 48px;
+  height: var(--nav-h);
+  padding: 0 48px;
   border-bottom: 1px solid var(--border);
   transition: box-shadow 0.3s;
 }
@@ -39,4 +40,16 @@ nav.scrolled {
   color: var(--muted);
   text-decoration: none;
   font-weight: 500;
+}
+
+.nav-r .btn {
+  color: #fff;
+}
+
+.nav-r .btn-ghost {
+  color: var(--ink);
+  border-color: transparent;
+  box-shadow: none;
+  outline: none;
+  opacity: 1;
 }

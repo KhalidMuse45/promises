@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make a Promise</title>
+<link rel="icon" href="/static/favicon.png" sizes="256x256" />
+<link rel="apple-touch-icon" href="/static/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/base.css">
+<link rel="stylesheet" href="/static/css/nav.css">
+</head>
+<body>
+
+<nav id="nav">
+  <a class="wordmark" href="/">Promise<span class="dot">.</span></a>
+  <div class="nav-r">
+    <a href="/make" class="btn">Make a Promise</a>
+    <a href="/promises" class="btn-ghost">View Promises</a>
+  </div>
+</nav>
+
+<main class="page">
+  <section class="section">
+    <div class="panel wide-panel">
+      <h2>Make a promise.</h2>
+      <p class="muted">What are you committing to?</p>
+
+      <div class="type-row">
+        <button type="button" class="type-btn active">Yourself</button>
+        <button type="button" class="type-btn">Others</button>
+        <button type="button" class="type-btn">The World</button>
+      </div>
+
+      <form action="/promises" method="post">
+        <label>Promise</label>
+        <input type="text" name="raw_text" placeholder="Run a half marathon" required />
+
+        <label>Details (optional)</label>
+        <textarea name="details" rows="3" placeholder="Any context or specifics you want to remember."></textarea>
+
+        <label>Deadline</label>
+        <input type="text" name="deadline" placeholder="1h 30m 10s" required />
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Commit</button>
+          <a href="/promises" class="btn-ghost">Back</a>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script>
+const typeButtons=document.querySelectorAll('.type-btn');
+typeButtons.forEach((btn)=>{
+  btn.addEventListener('click',()=>{
+    typeButtons.forEach((b)=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
