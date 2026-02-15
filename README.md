@@ -3,7 +3,8 @@
 ## Features
 - Create promises with a deadline
 - View active promises and mark them complete
-- Reframe missed promises with AI-generated reframing solutions
+- Reframe missed promises with 3 LLM-generated solutions based on 3 categories (Conservative, Moderate, and Progressive)
+- TBD: Create a working other handshake to create promises with other people
 
 ## Requirements
 - Python 3.9+
