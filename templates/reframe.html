@@ -1,61 +1,76 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Reframe Promise</title>
-    <link rel="stylesheet" href="/static/styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <h1>Reframe Promise</h1>
-      </div>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reframe Promise</title>
+<link rel="icon" href="/static/favicon.png" sizes="256x256" />
+<link rel="apple-touch-icon" href="/static/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/base.css">
+<link rel="stylesheet" href="/static/css/nav.css">
+</head>
+<body>
 
-      <div class="card">
-        <h2>Missed Promise</h2>
+<nav id="nav">
+  <a class="wordmark" href="/">Promise<span class="dot">.</span></a>
+  <div class="nav-r">
+    <a href="/make" class="btn">Make a Promise</a>
+    <a href="/promises" class="btn-ghost">View Promises</a>
+  </div>
+</nav>
+
+<main class="page">
+  <section class="section">
+    <div class="panel wide-panel">
+      <h2>Reframe a missed promise</h2>
+      <p class="muted">Tell us why you missed it and pick a better promise.</p>
+
+      <div class="panel-block">
+        <div class="muted">Missed promise</div>
         <div class="title">{{ promise.name }} ({{ promise.promise_type }})</div>
         <div class="muted">{{ promise.content }}</div>
       </div>
 
       {% if not solutions %}
-      <div class="card">
-        <h2>Step 1: Why & Category</h2>
-        <form action="/reframe/{{ promise.id }}/solutions" method="post">
-          <label>Why did you miss this promise?</label>
-          <input type="text" name="reason" required />
-          <label>Category</label>
-          <select name="category" required>
-            <option value="TIME_CONSTRAINT">TIME_CONSTRAINT</option>
-            <option value="RESOURCE_LIMITATION">RESOURCE_LIMITATION</option>
-            <option value="EXTERNAL_FACTORS">EXTERNAL_FACTORS</option>
-            <option value="MOTIVATION_LOSS">MOTIVATION_LOSS</option>
-            <option value="UNCLEAR_GOALS">UNCLEAR_GOALS</option>
-            <option value="OVERCOMMITMENT">OVERCOMMITMENT</option>
-            <option value="SKILL_GAP">SKILL_GAP</option>
-          </select>
-          <button type="submit">Generate Solutions</button>
-        </form>
-      </div>
+      <form action="/reframe/{{ promise.id }}/solutions" method="post" class="panel-block">
+        <label>Why did you miss this promise?</label>
+        <input type="text" name="reason" required />
+        <label>Category</label>
+        <select name="category" required>
+          <option value="TIME_CONSTRAINT">Time constraint</option>
+          <option value="RESOURCE_LIMITATION">Resource limitation</option>
+          <option value="EXTERNAL_FACTORS">External factors</option>
+          <option value="MOTIVATION_LOSS">Motivation loss</option>
+          <option value="UNCLEAR_GOALS">Unclear goals</option>
+          <option value="OVERCOMMITMENT">Overcommitment</option>
+          <option value="SKILL_GAP">Skill gap</option>
+        </select>
+        <div class="form-actions">
+          <button type="submit" class="btn">Generate Solutions</button>
+        </div>
+      </form>
       {% endif %}
 
       {% if solutions %}
-      <div class="card">
-        <h2>Step 2: Pick a Solution</h2>
-        <pre class="solutions">{{ solutions }}</pre>
-
-        <form action="/reframe/{{ promise.id }}/apply" method="post">
-          <input type="hidden" name="reason" value="{{ reason }}" />
-          <input type="hidden" name="category" value="{{ category }}" />
-          <label>Pick a solution</label>
-          <select name="solution" required>
-            <option value="1">Conservative</option>
-            <option value="2">Moderate</option>
-            <option value="3">Progressive</option>
-          </select>
-          <button type="submit">Apply Selected Solution</button>
-        </form>
-      </div>
+      <pre class="solutions panel-block">{{ solutions }}</pre>
+      <form action="/reframe/{{ promise.id }}/apply" method="post" class="panel-block">
+        <input type="hidden" name="reason" value="{{ reason }}" />
+        <input type="hidden" name="category" value="{{ category }}" />
+        <label>Pick a solution</label>
+        <select name="solution" required>
+          <option value="1">Conservative</option>
+          <option value="2">Moderate</option>
+          <option value="3">Progressive</option>
+        </select>
+        <div class="form-actions">
+          <button type="submit" class="btn">Apply Selected Solution</button>
+        </div>
+      </form>
       {% endif %}
     </div>
-  </body>
+  </section>
+</main>
+
+</body>
 </html>

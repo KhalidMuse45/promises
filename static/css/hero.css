@@ -1,0 +1,52 @@
+/* Hero section */
+
+.hero-shell {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: center;
+  gap: 40px;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 32px;
+}
+
+.hero-shell .terminal {
+  justify-self: end;
+  margin-right: 0;
+}
+
+.hero-left {
+  max-width: 560px;
+}
+
+.hero-left h1 {
+  font-size: 3.2rem;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.hero-left h1 .dot {
+  color: var(--accent);
+}
+
+.hero-left p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 12px;
+  margin-bottom: 18px;
+  max-width: 520px;
+}
+
+.hero-shell .btn,
+.hero-shell .btn-ghost {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+@media (max-width: 768px) {
+  .hero-shell {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
